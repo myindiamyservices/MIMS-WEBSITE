@@ -22,25 +22,29 @@ exports.createContact = async (req, res) => {
     // ✅ MongoDB
     const contact = await Contact.create(data);
 
-    // ✅ Google Sheet
-    const client = await auth.getClient();
-    const sheets = google.sheets({ version: "v4", auth: client });
+    // ✅ Google Sheet — optional; failure must not block Mongo save
+    try {
+      const client = await auth.getClient();
+      const sheets = google.sheets({ version: "v4", auth: client });
 
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: "1DPpIMRCzoTaJLU6l-pARxj41YwMb5s6CuHCN2iO_KuY",
-      range: "Sheet1!A:F",
-      valueInputOption: "USER_ENTERED",
-      resource: {
-        values: [[
-          data.name,
-          data.email,
-          data.phone,
-          data.organisation,
-          data.message,
-          new Date().toLocaleString()
-        ]],
-      },
-    });
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: "1DPpIMRCzoTaJLU6l-pARxj41YwMb5s6CuHCN2iO_KuY",
+        range: "Sheet1!A:F",
+        valueInputOption: "USER_ENTERED",
+        resource: {
+          values: [[
+            data.name,
+            data.email,
+            data.phone,
+            data.organisation,
+            data.message,
+            new Date().toLocaleString()
+          ]],
+        },
+      });
+    } catch (sheetErr) {
+      console.error("Google Sheets (contact) failed:", sheetErr.message);
+    }
 
     res.json({ msg: "Contact saved ✅", data: contact });
 

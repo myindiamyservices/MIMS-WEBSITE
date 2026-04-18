@@ -22,24 +22,28 @@ exports.createCallback = async (req, res) => {
     // 🔹 MongoDB save
     const callback = await Callback.create(data);
 
-    // 🔥 Google Sheet (ALAG SHEET ID USE KAR)
-    const client = await auth.getClient();
-    const sheets = google.sheets({ version: "v4", auth: client });
+    // 🔥 Google Sheet — optional; failure must not block Mongo save
+    try {
+      const client = await auth.getClient();
+      const sheets = google.sheets({ version: "v4", auth: client });
 
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: "1nhTyATNqjwjoRWWGt2kpaInP2jF7mk-MmxP_oXTEo_E",
-      range: "Sheet1!A:E",
-      valueInputOption: "USER_ENTERED",
-      resource: {
-        values: [[
-          data.name,
-          data.phone,
-          data.location,
-          data.description,
-          new Date().toLocaleString()
-        ]],
-      },
-    });
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: "1nhTyATNqjwjoRWWGt2kpaInP2jF7mk-MmxP_oXTEo_E",
+        range: "Sheet1!A:E",
+        valueInputOption: "USER_ENTERED",
+        resource: {
+          values: [[
+            data.name,
+            data.phone,
+            data.location,
+            data.description,
+            new Date().toLocaleString()
+          ]],
+        },
+      });
+    } catch (sheetErr) {
+      console.error("Google Sheets (callback) failed:", sheetErr.message);
+    }
 
     res.json({
       msg: "Callback saved ✅",

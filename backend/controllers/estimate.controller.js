@@ -18,31 +18,40 @@ const auth = new google.auth.GoogleAuth({
 exports.createEstimate = async (req, res) => {
   try {
     const data = req.body;
+    const vehicle = data.vehicle || data.model || "";
 
-    // 🔹 MongoDB save
-    const estimate = await Estimate.create(data);
-
-    // 🔥 Google Sheet add (YAHAN ADD KIYA)
-    const client = await auth.getClient();
-    const sheets = google.sheets({ version: "v4", auth: client });
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: "1DuUdeF87vmX3wlgzMVBrhP6GEeqkJT5u3xQrnFrwlkY",
-      range: "Sheet1!A:F",
-      valueInputOption: "USER_ENTERED",
-      resource: {
-        values: [[
-          data.name,
-          data.phone,
-          data.vehicle,
-          data.location,
-          data.category,
-          new Date().toLocaleString()
-        ]],
-      },
+    // 🔹 MongoDB save (always required)
+    const estimate = await Estimate.create({
+      name: data.name,
+      phone: data.phone,
+      location: data.location,
+      vehicle,
     });
 
-    // 🔹 response
+    // 🔥 Google Sheet — optional; failure must not block Mongo save
+    try {
+      const client = await auth.getClient();
+      const sheets = google.sheets({ version: "v4", auth: client });
+
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: "1DuUdeF87vmX3wlgzMVBrhP6GEeqkJT5u3xQrnFrwlkY",
+        range: "Sheet1!A:F",
+        valueInputOption: "USER_ENTERED",
+        resource: {
+          values: [[
+            data.name,
+            data.phone,
+            vehicle,
+            data.location,
+            data.category,
+            new Date().toLocaleString()
+          ]],
+        },
+      });
+    } catch (sheetErr) {
+      console.error("Google Sheets (estimate) failed:", sheetErr.message);
+    }
+
     res.json({
       msg: "Saved to DB + Sheet ✅",
       data: estimate,
