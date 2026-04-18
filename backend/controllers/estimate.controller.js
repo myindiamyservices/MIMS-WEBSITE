@@ -1,8 +1,17 @@
 const Estimate = require("../models/estimate.model");
 const { google } = require("googleapis");
+const fs = require("fs");
+const path = require("path");
+
+const localKeyFile = path.join(__dirname, "../config/google.json");
+const keyFile =
+  process.env.GOOGLE_KEY_FILE ||
+  (fs.existsSync("/etc/secrets/google.json")
+    ? "/etc/secrets/google.json"
+    : localKeyFile);
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "config/google.json",
+  keyFile,
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
