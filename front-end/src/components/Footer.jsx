@@ -13,10 +13,13 @@ function Footer() {
           {/* LEFT */}
           <div>
             <div className="flex items-center mb-3 -ml-6">
-  <img
-    src={logo}
-    className="h-32 w-auto object-contain flex-shrink-0"
-  />
+  <div className="brand-logo-wrap">
+    <img
+      src={logo}
+      alt="logo"
+      className="brand-logo h-[76px] w-auto object-contain flex-shrink-0"
+    />
+  </div>
 
   <h2 className="text-lg md:text-xl font-semibold whitespace-nowrap leading-none flex items-center ml-[-12px]">
     <span className="text-[#BD3333]">MyIndia</span>
@@ -149,7 +152,7 @@ function Footer() {
               <span className="bg-green-100 p-1.5 rounded-full">
                 <Check size={12} className="text-green-600" />
               </span>
-              Govt Authorized
+              Rvsf. Authorized
             </div>
 
             <div className="flex items-center gap-2">

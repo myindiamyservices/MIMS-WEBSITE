@@ -39,6 +39,7 @@ app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/estimate", require("./routes/estimate.routes"));
 app.use("/api/callback", require("./routes/callback.routes"));
 app.use("/api/contact", require("./routes/contact.routes"));
+app.use("/api/cod", require("./routes/cod.routes"));
 
 
 // TEST

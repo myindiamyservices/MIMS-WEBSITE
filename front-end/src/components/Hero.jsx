@@ -70,7 +70,7 @@ function Hero({ openModal }) {
             <div className="flex items-center gap-2 bg-white px-3 md:px-4 py-2 rounded-full shadow-sm">
               <CheckCircle className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
               <span className="text-xs md:text-sm font-medium text-gray-700">
-                Govt. Authorized
+                Rvsf. Authorized
               </span>
             </div>
 

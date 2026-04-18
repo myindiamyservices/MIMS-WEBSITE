@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 
 const Breadcrumb = ({ title }) => {
   return (
-    <div className="absolute top-[95px] md:top-[105px] left-8 md:left-16 z-50">
-
+    <nav
+      className="relative z-30 mb-3 md:mb-4 w-fit max-w-[min(100%,20rem)]"
+      aria-label="Breadcrumb"
+    >
       <div className="flex items-center gap-1 text-[12px] md:text-[13px] text-gray-700 
                       backdrop-blur-md bg-white/80 
                       px-2 py-[3px] rounded 
@@ -25,7 +27,7 @@ const Breadcrumb = ({ title }) => {
 
       </div>
 
-    </div>
+    </nav>
   );
 };
 

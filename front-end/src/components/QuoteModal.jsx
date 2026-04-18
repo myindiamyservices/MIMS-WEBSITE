@@ -208,7 +208,7 @@ function QuoteModal({ isOpen, onClose, defaultCategory }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
+    <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center px-4">
 
       <div className="bg-gradient-to-r from-[#eaf4fb] to-[#edf7ea] w-full max-w-4xl p-6 md:p-10 rounded-3xl relative">
 
@@ -337,7 +337,13 @@ function QuoteModal({ isOpen, onClose, defaultCategory }) {
 
             <button
               onClick={handleSubmit}
-              className="w-full bg-green-600 text-white py-3 rounded-lg mt-6">
+              className="w-full px-6 py-3 rounded-lg text-sm font-medium text-white mt-6
+              bg-gradient-to-r from-green-500 to-green-700
+              transform transition-all duration-300 ease-in-out
+              hover:scale-105 hover:-translate-y-0.5
+              active:scale-95
+              hover:shadow-xl hover:shadow-green-500/40
+              hover:brightness-110">
               Submit
             </button>
           </>

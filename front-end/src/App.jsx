@@ -29,6 +29,7 @@ import Partner from "./pages/Partner";
 import FAQPage from "./pages/FAQPage";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import CodServices from "./pages/CodServices";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,6 +88,7 @@ function App() {
           <Route path="/otp" element={<Otp />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/cod-services" element={<CodServices />} />
 
         </Routes>
 
