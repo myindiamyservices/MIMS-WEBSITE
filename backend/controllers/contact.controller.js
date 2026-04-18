@@ -15,6 +15,13 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
+const formatISTDateTime = () =>
+  new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "short",
+    timeStyle: "medium",
+  }).format(new Date());
+
 exports.createContact = async (req, res) => {
   try {
     const data = req.body;
@@ -38,7 +45,7 @@ exports.createContact = async (req, res) => {
             data.phone,
             data.organisation,
             data.message,
-            new Date().toLocaleString()
+            formatISTDateTime()
           ]],
         },
       });

@@ -15,6 +15,13 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
+const formatISTDateTime = () =>
+  new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "short",
+    timeStyle: "medium",
+  }).format(new Date());
+
 exports.createEstimate = async (req, res) => {
   try {
     const data = req.body;
@@ -44,7 +51,7 @@ exports.createEstimate = async (req, res) => {
             vehicle,
             data.location,
             data.category,
-            new Date().toLocaleString()
+            formatISTDateTime()
           ]],
         },
       });
