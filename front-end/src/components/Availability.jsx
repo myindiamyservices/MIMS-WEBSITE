@@ -1,7 +1,5 @@
 import map from "../assets/map.png";
 import { useState } from "react";
-import QuoteModal from "../components/QuoteModal";
-import certificateImg from "../assets/certificate.jpeg";
 
 const cities = [
   "Delhi","Noida","Greater Noida","Gurgaon","Faridabad","Ghaziabad",
@@ -21,10 +19,9 @@ const cities = [
   "Guwahati","Shillong","Jorhat","Dibrugarh","Tinsukia","Agartala"
 ];
 
-function Availability() {
+function Availability({ openModal }) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [showEstimateModal, setShowEstimateModal] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -43,12 +40,7 @@ function Availability() {
   };
 
   const checkAvailability = () => {
-    const isAvailable = cities.some(
-      (c) => c.toLowerCase() === city.trim().toLowerCase()
-    );
-
-    if (isAvailable) setShowEstimateModal(true);
-    else alert("Service not available yet in your area");
+    openModal("", city.trim());
   };
 
   return (
@@ -132,13 +124,6 @@ function Availability() {
 
         </div>
       </section>
-
-      {/* MODAL */}
-      <QuoteModal
-        isOpen={showEstimateModal}
-        onClose={() => setShowEstimateModal(false)}
-        defaultCity={city}
-      />
     </>
   );
 }

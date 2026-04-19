@@ -1,0 +1,11 @@
+# https://myindiamyservices.com
+User-agent: *
+Allow: /
+
+# Utility / auth flows (also use noindex in HTML)
+Disallow: /otp
+Disallow: /customer-login
+Disallow: /register
+
+Sitemap: https://myindiamyservices.com/sitemap.xml
+Sitemap: https://myindiamyservices.com/sitemap.txt

@@ -2,7 +2,7 @@ import API from "../api";
 import { useState, useEffect } from "react";
 import carData from "../data/cars.json";
 
-function QuoteModal({ isOpen, onClose, defaultCategory }) {
+function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) {
 
   const [step, setStep] = useState("form");
 
@@ -44,13 +44,13 @@ function QuoteModal({ isOpen, onClose, defaultCategory }) {
       setForm({
         category: defaultCategory || "",
         model: "",
-        location: "",
+        location: defaultLocation || "",
         phone: "",
         name: "",
       });
       setErrors({});
     }
-  }, [isOpen, defaultCategory]);
+  }, [isOpen, defaultCategory, defaultLocation]);
 
   useEffect(() => {
     const close = (e) => {

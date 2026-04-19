@@ -15,6 +15,7 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import Callback from "./components/Callback";
 import ScrollToTop from "./components/ScrollToTop";
+import SeoHead from "./components/SeoHead";
 
 // CONTACT PAGE
 import Contact from "./components/Contact";
@@ -34,15 +35,18 @@ import CodServices from "./pages/CodServices";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedType, setSelectedType] = useState("");
+  const [quoteLocation, setQuoteLocation] = useState("");
 
-  const openModal = (type = "") => {
-    setSelectedType(type);
+  const openModal = (type = "", location = "") => {
+    setSelectedType(typeof type === "string" ? type : "");
+    setQuoteLocation(typeof location === "string" ? location : "");
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
     setSelectedType("");
+    setQuoteLocation("");
   };
 
   return (
@@ -54,6 +58,8 @@ function App() {
 
       {/* SCROLL FIX */}
       <ScrollToTop />
+
+      <SeoHead />
 
       {/* MAIN CONTENT */}
       <main className="flex-grow pt-[80px] md:pt-[90px]">
@@ -67,7 +73,7 @@ function App() {
               <>
                 <Hero openModal={openModal} />
                 <Stats />
-                <Availability />
+                <Availability openModal={openModal} />
                 <WhyScrap openModal={openModal} />
                 <HowItWorks />
                 <Testimonials />
@@ -102,6 +108,7 @@ function App() {
         isOpen={isOpen}
         onClose={closeModal}
         defaultCategory={selectedType}
+        defaultLocation={quoteLocation}
       />
 
     </div>
