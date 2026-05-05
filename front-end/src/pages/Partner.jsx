@@ -98,7 +98,7 @@ function Partner() {
 
           {/* CONTENT */}
           <p className="text-gray-600 mb-4 leading-relaxed">
-            At <span className="font-semibold text-gray-800">MyIndiaMyServices</span>, we don’t just recycle vehicles — we transform end-of-life assets into new opportunities for growth and sustainability. By partnering with us, you contribute to a circular economy while unlocking scalable, eco-conscious business potential.
+            At <span className="font-semibold text-gray-800">My India My Services</span>, we don’t just recycle vehicles — we transform end-of-life assets into new opportunities for growth and sustainability. By partnering with us, you contribute to a circular economy while unlocking scalable, eco-conscious business potential.
           </p>
 
           <p className="text-gray-600 mb-4 leading-relaxed">

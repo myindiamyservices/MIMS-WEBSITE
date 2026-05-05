@@ -16,14 +16,14 @@ function Footer() {
   <div className="brand-logo-wrap">
     <img
       src={logo}
-      alt="logo"
+      alt="My India My Services logo"
       className="brand-logo h-[76px] w-auto object-contain flex-shrink-0"
     />
   </div>
 
   <h2 className="text-lg md:text-xl font-semibold whitespace-nowrap leading-none flex items-center ml-[-12px]">
-    <span className="text-[#BD3333]">MyIndia</span>
-    <span className="text-green-600 ml-1">MyServices</span>
+    <span className="text-[#BD3333]">My India</span>
+    <span className="text-green-600 ml-1">My Services</span>
   </h2>
 </div>
             <p className="text-gray-600 text-sm mb-2">
@@ -166,7 +166,7 @@ function Footer() {
 
           {/* COPYRIGHT */}
           <p className="text-gray-500 text-xs text-center">
-            © 2026 MyIndiaMyServices. All Rights Reserved.
+            © 2026 My India My Services. All Rights Reserved.
           </p>
 
         </div>

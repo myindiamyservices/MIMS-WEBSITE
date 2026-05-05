@@ -58,7 +58,7 @@ function Testimonials() {
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold">
           <span className="text-green-600">See</span>{" "}
-          <span className="text-blue-600">MyIndiaMyServices in Action</span>
+          <span className="text-blue-600">My India My Services in Action</span>
         </h2>
       </div>
 
@@ -167,7 +167,7 @@ function Testimonials() {
             </h3>
 
             <p className="text-gray-600 text-sm mb-3 leading-relaxed">
-              In a remarkable milestone, MyIndiaMyServices successfully handled the
+              In a remarkable milestone, My India My Services successfully handled the
               scrapping of a luxury Rolls Royce — a symbol of prestige transformed into
               sustainability.
             </p>

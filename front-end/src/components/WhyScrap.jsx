@@ -25,7 +25,7 @@ function WhyScrap({ openModal }) {
 
       {/* TITLE */}
       <h2 className="text-4xl font-bold text-center mb-10">
-        Why <span className="text-green-600">MyIndiaMyServices?</span>
+        Why <span className="text-green-600">My India My Services?</span>
       </h2>
 
       {/* FEATURES */}

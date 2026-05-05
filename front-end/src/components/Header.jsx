@@ -104,7 +104,7 @@ function Header({ openModal }) {
               <div className="brand-logo-wrap">
                 <img
                   src={logo}
-                  alt="logo"
+                  alt="My India My Services logo"
                   className="brand-logo h-[170px] md:h-[230px] w-auto object-contain relative -top-5 md:-top-7"
                 />
               </div>
@@ -125,7 +125,7 @@ function Header({ openModal }) {
               <div className="brand-logo-wrap">
                 <img
                   src={logo}
-                  alt="logo"
+                  alt="My India My Services logo"
                   className="brand-logo h-[100px] w-auto object-contain"
                 />
               </div>

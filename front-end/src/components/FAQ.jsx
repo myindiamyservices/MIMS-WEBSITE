@@ -7,8 +7,8 @@ function FAQ({ showTitle = true }) {
 
   const faqs = [
     {
-      q: "What is MyIndiaMyServices?",
-      a: "MyIndiaMyServices is India’s largest scrap sourcing platform that helps you recycle your vehicle safely, legally, and at the best price.",
+      q: "What is My India My Services?",
+      a: "My India My Services is India's largest scrap sourcing platform that helps you recycle your vehicle safely, legally, and at the best price.",
     },
     {
       q: "How does the scrapping process work?",

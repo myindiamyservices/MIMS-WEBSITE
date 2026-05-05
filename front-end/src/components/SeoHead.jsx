@@ -13,9 +13,7 @@ export default function SeoHead() {
   const seo = getPageSeo(pathname);
   const canonicalPath = pathname.split("?")[0] || "/";
   const canonical =
-    canonicalPath === "/"
-      ? `${SITE_URL}/`
-      : `${SITE_URL}${canonicalPath}`;
+    canonicalPath === "/" ? `${SITE_URL}/` : `${SITE_URL}${canonicalPath}`;
 
   const robots = seo.noIndex
     ? "noindex, nofollow"
@@ -37,7 +35,10 @@ export default function SeoHead() {
         <meta property="og:description" content={seo.description} />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE} />
-        <meta property="og:image:alt" content="My India My Services — vehicle scrap & recycling" />
+        <meta
+          property="og:image:alt"
+          content="My India My Services vehicle scrap and recycling"
+        />
         <meta property="og:locale" content="en_IN" />
 
         <meta name="twitter:card" content="summary_large_image" />

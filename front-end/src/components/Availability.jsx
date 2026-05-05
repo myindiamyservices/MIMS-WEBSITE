@@ -62,7 +62,7 @@ function Availability({ openModal }) {
           {/* HEADING */}
           <div className="mb-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-3">
-              <span className="text-green-600">MyIndiaMyServices</span>{" "}
+              <span className="text-green-600">My India My Services</span>{" "}
               <span className="text-blue-600">Presence</span>
             </h1>
 
