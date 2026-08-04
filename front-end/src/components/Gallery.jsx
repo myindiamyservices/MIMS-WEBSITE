@@ -8,7 +8,7 @@ function Gallery() {
       image: nikhilBadhwarImg,
       badge: "Air Force Veteran",
       badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
-      title: "41-Year-Old Maruti Van (DYD 6016)",
+      title: "41-Year-Old Maruti Van (DID 6016)",
       owner: "Officer Nikhil Badhwar",
       job: "Indian Air Force Veteran",
       description: "A cherished family companion for over four decades, this 1985 Maruti Van witnessed generations of memories. Bidding farewell to such an icon is emotional, but Officer Nikhil Badhwar chose the honorable path of responsible recycling. MIMS processed the vehicle following strict environmental norms, ensured legal de-registration, and issued the official Certificate of Deposit.",
