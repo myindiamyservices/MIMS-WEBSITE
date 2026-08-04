@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
-import EnvironmentWeekPopup from "./components/EnvironmentWeekPopup";
 
 // HOME COMPONENTS
 import Hero from "./components/Hero";
@@ -13,6 +12,7 @@ import WhyScrap from "./components/WhyScrap";
 import Availability from "./components/Availability";
 import HowItWorks from "./components/HowItWorks";
 import Testimonials from "./components/Testimonials";
+import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
 import Callback from "./components/Callback";
 import ScrollToTop from "./components/ScrollToTop";
@@ -53,7 +53,6 @@ function App() {
   return (
     // ✅ GLOBAL FIX (MOST IMPORTANT)
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#e6eef2]">
-      <EnvironmentWeekPopup />
 
       {/* HEADER */}
       <Header openModal={openModal} />
@@ -79,6 +78,7 @@ function App() {
                 <WhyScrap openModal={openModal} />
                 <HowItWorks />
                 <Testimonials />
+                <Gallery />
                 <FAQ />
                 <Callback />
               </>
