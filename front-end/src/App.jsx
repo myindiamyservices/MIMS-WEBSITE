@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import QuoteModal from "./components/QuoteModal";
+import PosterPopup from "./components/PosterPopup";
 
 // HOME COMPONENTS
 import Hero from "./components/Hero";
@@ -53,6 +54,7 @@ function App() {
   return (
     // ✅ GLOBAL FIX (MOST IMPORTANT)
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#e6eef2]">
+      <PosterPopup />
 
       {/* HEADER */}
       <Header openModal={openModal} />
