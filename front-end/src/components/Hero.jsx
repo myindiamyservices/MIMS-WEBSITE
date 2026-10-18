@@ -1,6 +1,7 @@
 import { motion as Motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import video from "../assets/MIMS-reel.mp4";
+import { useLanguage } from "../context/LanguageContext";
 
 const scrollToServices = () => {
   document.getElementById("services")?.scrollIntoView({
@@ -9,6 +10,8 @@ const scrollToServices = () => {
 };
 
 function Hero({ openModal }) {
+  const { language, t } = useLanguage();
+
   return (
     <section
       id="home"
@@ -27,27 +30,33 @@ function Hero({ openModal }) {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col justify-start"
         >
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-[1.2] tracking-tight text-gray-900">
-            My India My Services turns your old vehicle into{" "}
-            <span className="text-green-600">real value</span> fast.
-          </h1>
+          {language === "hi" ? (
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-[1.2] tracking-tight text-gray-900">
+              माई इंडिया माई सर्विसेज आपके पुराने वाहन को बदलें{" "}
+              <span className="text-green-600">सर्वोत्तम मूल्य</span> में तुरंत।
+            </h1>
+          ) : (
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-[1.2] tracking-tight text-gray-900">
+              My India My Services turns your old vehicle into{" "}
+              <span className="text-green-600">real value</span> fast.
+            </h1>
+          )}
 
           <p className="mt-4 text-gray-700 text-sm sm:text-base md:text-xl leading-relaxed">
-            MIMS is India's safe and trusted vehicle recycler with a 100% legal
-            process, free pickup, and instant documentation.
+            {t("MIMS is India's safe and trusted vehicle recycler with a 100% legal process, free pickup, and instant documentation.")}
           </p>
 
           <p className="mt-2 text-gray-700 text-sm sm:text-base md:text-lg">
-            Free pickup, best price, zero hassle.
+            {t("Free pickup, best price, zero hassle.")}
           </p>
 
           <div className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4">
             <button onClick={openModal} className="btn-primary">
-              Get Instant Estimate
+              {t("Get Instant Estimate")}
             </button>
 
             <button onClick={scrollToServices} className="btn-secondary">
-              Check Pickup Availability
+              {t("Check Pickup Availability")}
             </button>
           </div>
 
@@ -55,21 +64,21 @@ function Hero({ openModal }) {
             <div className="flex items-center gap-2 bg-white px-3 md:px-4 py-2 rounded-full shadow-sm">
               <CheckCircle className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
               <span className="text-xs md:text-sm font-medium text-gray-700">
-                Established Since 2021
+                {t("Established Since 2021")}
               </span>
             </div>
 
             <div className="flex items-center gap-2 bg-white px-3 md:px-4 py-2 rounded-full shadow-sm">
               <CheckCircle className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
               <span className="text-xs md:text-sm font-medium text-gray-700">
-                RVSF Authorized
+                {t("Rvsf. Authorized", "RVSF अधिकृत")}
               </span>
             </div>
 
             <div className="flex items-center gap-2 bg-white px-3 md:px-4 py-2 rounded-full shadow-sm">
               <CheckCircle className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
               <span className="text-xs md:text-sm font-medium text-gray-700">
-                120+ Locations
+                {t("120+ Locations", "120+ शहर")}
               </span>
             </div>
           </div>

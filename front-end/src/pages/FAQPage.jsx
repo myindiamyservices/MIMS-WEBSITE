@@ -1,7 +1,10 @@
 import Breadcrumb from "../components/Breadcrumb";
 import FAQ from "../components/FAQ";
+import { useLanguage } from "../context/LanguageContext";
 
 function FAQPage() {
+  const { t } = useLanguage();
+
   return (
     <section className="min-h-screen bg-gradient-to-r from-[#e6eef2] to-[#dfe8e4] pt-10 pb-16">
 
@@ -15,16 +18,15 @@ function FAQPage() {
         {/* 🔹 PAGE TITLE */}
         <div className="text-center mb-3">
           <h1 className="text-4xl md:text-5xl font-bold">
-            <span className="text-green-600">Frequently Asked</span>{" "}
-            <span className="text-blue-600">Questions</span>
+            <span className="text-green-600">{t("Frequently Asked")}</span>{" "}
+            <span className="text-blue-600">{t("Questions")}</span>
           </h1>
 
           {/* underline */}
           <div className="w-24 h-1 bg-green-500 mx-auto mt-4 rounded-full"></div>
+        </div>
 
-         </div>
-
-        {/* 🔹 FAQ CONTENT (NO DUPLICATE TITLE) */}
+        {/* 🔹 FAQ CONTENT */}
         <FAQ showTitle={false} />
 
       </div>

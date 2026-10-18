@@ -6,6 +6,7 @@ import {
   getPageSeo,
   organizationJsonLd,
   websiteJsonLd,
+  parivartanYojnaJsonLd,
 } from "../seo/siteConfig";
 
 export default function SeoHead() {
@@ -62,6 +63,12 @@ export default function SeoHead() {
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(websiteJsonLd),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(parivartanYojnaJsonLd),
             }}
           />
         </Helmet>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 function Header({ openModal }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -9,7 +10,8 @@ function Header({ openModal }) {
   const [scrolled, setScrolled] = useState(false);
   const [isDesktopLayout, setIsDesktopLayout] = useState(false);
 
-  // ✅ NEW
+  const { language, setLanguage, t } = useLanguage();
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,10 +48,6 @@ function Header({ openModal }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ❌ OLD FUNCTION NOT USED
-  // const scrollToSection = ...
-
-  // ✅ FIXED FUNCTION
   const handleHowItWorksClick = () => {
     setMobileOpen(false);
 
@@ -83,10 +81,10 @@ function Header({ openModal }) {
 
           {/* TOP BAR */}
           <div className="hidden md:flex justify-end items-center text-sm text-gray-600 py-2 mt-2 gap-6">
-            <Link to="/about" className="hover:text-green-600">About Us</Link>
-            <Link to="/contact" className="hover:text-green-600">Contact Us</Link>
-            <Link to="/faq" className="hover:text-green-600">FAQs</Link>
-            <span>Call us on : <b>+91 931-1244-755</b></span>
+            <Link to="/about" className="hover:text-green-600 transition">{t("About Us")}</Link>
+            <Link to="/contact" className="hover:text-green-600 transition">{t("Contact Us")}</Link>
+            <Link to="/faq" className="hover:text-green-600 transition">{t("FAQs")}</Link>
+            <span>{t("Call us on")} : <b>+91 931-1244-755</b></span>
           </div>
 
           {/* LINE */}
@@ -98,88 +96,143 @@ function Header({ openModal }) {
             {/* LEFT */}
             <div className="flex items-center gap-3">
 
-            {/* DESKTOP */}
-           <div className="hidden md:flex items-start">
+              {/* DESKTOP BRAND */}
+              <div className="hidden md:flex items-start">
+                <div className="brand-logo-wrap">
+                  <img
+                    src={logo}
+                    alt="My India My Services logo"
+                    className="brand-logo h-[170px] md:h-[230px] w-auto object-contain relative -top-5 md:-top-7"
+                  />
+                </div>
 
-              <div className="brand-logo-wrap">
-                <img
-                  src={logo}
-                  alt="My India My Services logo"
-                  className="brand-logo h-[170px] md:h-[230px] w-auto object-contain relative -top-5 md:-top-7"
-                />
+                <div className="flex flex-col leading-tight -ml-14 md:-ml-19 mt-2 md:mt-14">
+                  <p className="font-bold text-[#BD3333] text-[18px] md:text-[20px]">
+                    MY INDIA
+                  </p>
+                  <p className="text-green-600 font-bold text-[18px] md:text-[20px]">
+                    MY SERVICES
+                  </p>
+                </div>
               </div>
 
-              <div  className="flex flex-col leading-tight -ml-14 md:-ml-19 mt-2 md:mt-14">
-                <p className="font-bold text-[#BD3333] text-[18px] md:text-[20px]">
-                  MY INDIA
-                </p>
-                <p className="text-green-600 font-bold text-[18px] md:text-[20px]">
-                  MY SERVICES
-                </p>
+              {/* MOBILE BRAND */}
+              <div className="flex md:hidden items-center gap-2">
+                <div className="brand-logo-wrap">
+                  <img
+                    src={logo}
+                    alt="My India My Services logo"
+                    className="brand-logo h-[100px] w-auto object-contain"
+                  />
+                </div>
+
+                <div className="flex flex-col leading-tight">
+                  <p className="font-bold text-[#BD3333] text-[14px]">
+                    MY INDIA
+                  </p>
+                  <p className="text-green-600 font-bold text-[14px]">
+                    MY SERVICES
+                  </p>
+                </div>
               </div>
 
             </div>
-
-            {/* MOBILE */}
-            <div className="flex md:hidden items-center gap-2">
-              <div className="brand-logo-wrap">
-                <img
-                  src={logo}
-                  alt="My India My Services logo"
-                  className="brand-logo h-[100px] w-auto object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col leading-tight">
-                <p className="font-bold text-[#BD3333] text-[14px]">
-                  MY INDIA
-                </p>
-                <p className="text-green-600 font-bold text-[14px]">
-                  MY SERVICES
-                </p>
-              </div>
-            </div>
-
-          </div>
 
             {/* RIGHT DESKTOP */}
             <div className="hidden md:flex items-center gap-5 text-[15px] font-medium -mt-2">
 
-              {/* ✅ FIXED */}
-              <button onClick={handleHowItWorksClick}>
-                How it Works
+              <button onClick={handleHowItWorksClick} className="hover:text-green-600 transition">
+                {t("How it Works")}
               </button>
 
-              <Link to="/cod-services?service=purchase">Cod Purchase</Link>
-              <Link to="/cod-services?service=sale">Cod Sales</Link>
-              <Link to="/cod-services?service=new_vehicle">
-                Call for New Vehicle
+              <Link to="/cod-services?service=purchase" className="hover:text-green-600 transition">
+                {t("Cod Purchase")}
+              </Link>
+              <Link to="/cod-services?service=sale" className="hover:text-green-600 transition">
+                {t("Cod Sales")}
+              </Link>
+              <Link to="/cod-services?service=new_vehicle" className="hover:text-green-600 transition">
+                {t("Call for New Vehicle")}
               </Link>
 
-              <Link to="/partners">Partners</Link>
-
-              <Link to="/customer-login" className="text-green-600">
-                Customer Login
+              <Link to="/partners" className="hover:text-green-600 transition">
+                {t("Partners")}
               </Link>
+
+              <Link to="/customer-login" className="text-green-600 hover:text-green-700 transition">
+                {t("Customer Login")}
+              </Link>
+
+              {/* 🌐 ENGLISH / HINDI TOGGLE BUTTON */}
+              <div className="flex items-center bg-white/90 p-1 rounded-full border border-gray-300 shadow-sm gap-0.5">
+                <button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  className={`px-3 py-1 text-xs font-bold rounded-full transition-all duration-200 ${
+                    language === "en"
+                      ? "bg-green-600 text-white shadow-sm"
+                      : "text-gray-600 hover:text-black hover:bg-gray-100"
+                  }`}
+                  aria-label="Switch to English"
+                >
+                  English
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("hi")}
+                  className={`px-3 py-1 text-xs font-bold rounded-full transition-all duration-200 ${
+                    language === "hi"
+                      ? "bg-green-600 text-white shadow-sm"
+                      : "text-gray-600 hover:text-black hover:bg-gray-100"
+                  }`}
+                  aria-label="हिंदी में बदलें"
+                >
+                  हिन्दी
+                </button>
+              </div>
 
               <button
-              onClick={() => {
-                openModal();
-                setMobileOpen(false);
-              }}
-              className="btn-primary"
-            >
-              Get Instant Quote
-            </button>
+                onClick={() => {
+                  openModal();
+                  setMobileOpen(false);
+                }}
+                className="btn-primary"
+              >
+                {t("Get Instant Quote")}
+              </button>
             </div>
 
-            {/* MOBILE MENU BUTTON */}
-            <button
-              className="md:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
-            >
-              {mobileOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
+            {/* MOBILE RIGHT CONTROLS: LANGUAGE SWITCH + HAMBURGER */}
+            <div className="flex md:hidden items-center gap-2">
+              <div className="flex items-center bg-white/90 p-0.5 rounded-full border border-gray-300 shadow-sm">
+                <button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  className={`px-2 py-0.5 text-xs font-bold rounded-full transition-all ${
+                    language === "en" ? "bg-green-600 text-white" : "text-gray-700"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("hi")}
+                  className={`px-2 py-0.5 text-xs font-bold rounded-full transition-all ${
+                    language === "hi" ? "bg-green-600 text-white" : "text-gray-700"
+                  }`}
+                >
+                  हिं
+                </button>
+              </div>
+
+              <button
+                className="p-1 text-gray-800"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle navigation menu"
+              >
+                {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+              </button>
+            </div>
 
           </div>
         </div>
@@ -189,31 +242,58 @@ function Header({ openModal }) {
       {mobileOpen && (
         <div className="md:hidden bg-white shadow-lg px-6 py-6 flex flex-col gap-5 relative z-[60] border-t border-gray-100">
 
-          {/* ✅ FIXED */}
-          <button onClick={handleHowItWorksClick} className="text-left">
-            How it Works
+          {/* MOBILE LANGUAGE PICKER */}
+          <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+            <span className="text-sm font-semibold text-gray-700 flex items-center gap-1.5">
+              <Globe size={16} className="text-green-600" />
+              {language === "hi" ? "भाषा / Language:" : "Language:"}
+            </span>
+            <div className="flex items-center bg-gray-100 p-0.5 rounded-full border border-gray-300">
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+                  language === "en" ? "bg-green-600 text-white shadow" : "text-gray-700"
+                }`}
+              >
+                English
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("hi")}
+                className={`px-3 py-1 text-xs font-bold rounded-full transition-all ${
+                  language === "hi" ? "bg-green-600 text-white shadow" : "text-gray-700"
+                }`}
+              >
+                हिन्दी
+              </button>
+            </div>
+          </div>
+
+          <button onClick={handleHowItWorksClick} className="text-left font-medium">
+            {t("How it Works")}
           </button>
 
-          <Link to="/cod-services?service=purchase" onClick={() => setMobileOpen(false)}>
-            Cod Purchase
+          <Link to="/cod-services?service=purchase" onClick={() => setMobileOpen(false)} className="font-medium">
+            {t("Cod Purchase")}
           </Link>
-          <Link to="/cod-services?service=sale" onClick={() => setMobileOpen(false)}>
-            Cod Sales
+          <Link to="/cod-services?service=sale" onClick={() => setMobileOpen(false)} className="font-medium">
+            {t("Cod Sales")}
           </Link>
-          <Link to="/cod-services?service=new_vehicle" onClick={() => setMobileOpen(false)}>
-            Call for New Vehicle
+          <Link to="/cod-services?service=new_vehicle" onClick={() => setMobileOpen(false)} className="font-medium">
+            {t("Call for New Vehicle")}
           </Link>
 
-          <Link to="/partners" onClick={() => setMobileOpen(false)}>
-            Partners
+          <Link to="/partners" onClick={() => setMobileOpen(false)} className="font-medium">
+            {t("Partners")}
           </Link>
 
           <Link
             to="/customer-login"
             onClick={() => setMobileOpen(false)}
-            className="text-green-600"
+            className="text-green-600 font-semibold"
           >
-            Customer Login
+            {t("Customer Login")}
           </Link>
 
           <button
@@ -223,14 +303,14 @@ function Header({ openModal }) {
             }}
             className="btn-primary"
           >
-            Get Instant Quote
+            {t("Get Instant Quote")}
           </button>
 
           <div className="border-t pt-4 text-sm text-gray-500 flex flex-col gap-2">
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact Us</Link>
-            <Link to="/faq">FAQs</Link>
-            <p>Call: +91 931-1244-755</p>
+            <Link to="/about" onClick={() => setMobileOpen(false)}>{t("About Us")}</Link>
+            <Link to="/contact" onClick={() => setMobileOpen(false)}>{t("Contact Us")}</Link>
+            <Link to="/faq" onClick={() => setMobileOpen(false)}>{t("FAQs")}</Link>
+            <p>{t("Call:")} +91 931-1244-755</p>
           </div>
 
         </div>

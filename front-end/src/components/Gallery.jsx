@@ -1,27 +1,34 @@
 import { Award, Gem } from "lucide-react";
 import nikhilBadhwarImg from "../assets/nikhil-badhwar-car.png";
 import rollsRoyceImg from "../assets/rolls-royce-phantom.jpg";
+import { useLanguage } from "../context/LanguageContext";
 
 function Gallery() {
+  const { language, t } = useLanguage();
+
   const stories = [
     {
       image: nikhilBadhwarImg,
-      badge: "Air Force Veteran",
+      badge: t("Air Force Veteran"),
       badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
-      title: "41-Year-Old Maruti Van (DID 6016)",
-      owner: "Officer Nikhil Badhwar",
-      job: "Indian Air Force Veteran",
-      description: "A cherished family companion for over four decades, this 1985 Maruti Van witnessed generations of memories. Bidding farewell to such an icon is emotional, but Officer Nikhil Badhwar chose the honorable path of responsible recycling. MIMS processed the vehicle following strict environmental norms, ensured legal de-registration, and issued the official Certificate of Deposit.",
+      title: t("41-Year-Old Maruti Van (DID 6016)"),
+      owner: t("Officer Nikhil Badhwar"),
+      job: t("Indian Air Force Veteran"),
+      description: t(
+        "A cherished family companion for over four decades, this 1985 Maruti Van witnessed generations of memories. Bidding farewell to such an icon is emotional, but Officer Nikhil Badhwar chose the honorable path of responsible recycling. MIMS processed the vehicle following strict environmental norms, ensured legal de-registration, and issued the official Certificate of Deposit."
+      ),
       icon: Award,
     },
     {
       image: rollsRoyceImg,
-      badge: "Luxury Milestone",
+      badge: t("Luxury Milestone"),
       badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
-      title: "Rolls Royce Phantom",
+      title: t("Rolls Royce Phantom"),
       owner: "",
       job: "",
-      description: "In a remarkable milestone, My India My Services successfully handled the scrapping of a luxury Rolls Royce Phantom — a symbol of ultimate prestige transformed into sustainability. Every component was processed with top-tier precision, ensuring maximum material recovery while following strict environmental and legal norms.",
+      description: t(
+        "In a remarkable milestone, My India My Services successfully handled the scrapping of a luxury Rolls Royce Phantom — a symbol of ultimate prestige transformed into sustainability. Every component was processed with top-tier precision, ensuring maximum material recovery while following strict environmental and legal norms."
+      ),
       icon: Gem,
     },
   ];
@@ -33,13 +40,21 @@ function Gallery() {
         {/* HEADER */}
         <div className="text-center mb-12">
           <span className="text-green-600 font-semibold tracking-wider uppercase text-xs sm:text-sm">
-            MIMS Scrap Diaries
+            {t("MIMS Scrap Diaries")}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 text-gray-900">
-            Our <span className="text-green-600">Wall of Trust</span> & Gallery
+            {language === "hi" ? (
+              <>
+                हमारा <span className="text-green-600">विश्वास और गैलरी</span>
+              </>
+            ) : (
+              <>
+                Our <span className="text-green-600">Wall of Trust</span> & Gallery
+              </>
+            )}
           </h2>
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
-            Real stories of responsible citizens choosing compliance and sustainability when retiring their beloved vehicles.
+            {t("Real stories of responsible citizens choosing compliance and sustainability when retiring their beloved vehicles.")}
           </p>
         </div>
 
@@ -81,10 +96,10 @@ function Gallery() {
                     {/* OWNER / CUSTOMER */}
                     {story.owner ? (
                       <p className="text-xs text-gray-500 font-medium mb-4">
-                        Owner: <span className="text-gray-800 font-semibold">{story.owner}</span>{story.job && ` • ${story.job}`}
+                        {t("Owner:")} <span className="text-gray-800 font-semibold">{story.owner}</span>{story.job && ` • ${story.job}`}
                       </p>
                     ) : (
-                      <div className="h-4"></div> /* Spacer when no owner info is present */
+                      <div className="h-4"></div>
                     )}
 
                     {/* DESCRIPTION */}
@@ -95,8 +110,8 @@ function Gallery() {
 
                   {/* FOOTER ACTION */}
                   <div className="border-t pt-4 flex items-center justify-between text-xs text-gray-400">
-                    <span>100% Legally Scrapped</span>
-                    <span>COD Issued ✓</span>
+                    <span>{t("100% Legally Scrapped")}</span>
+                    <span>{t("COD Issued ✓")}</span>
                   </div>
                 </div>
               </div>
