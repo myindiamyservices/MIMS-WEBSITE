@@ -1,56 +1,44 @@
 import { IndianRupee, Truck, FileText, Receipt } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
 
 function HowItWorks() {
-  const { language, t } = useLanguage();
-
   const steps = [
     {
       icon: <IndianRupee size={28} />,
-      title: t("Instant Estimate"),
-      desc: t("Discover your vehicle’s true value instantly"),
+      title: "Instant Estimate",
+      desc: "Discover your vehicle’s true value instantly",
     },
     {
       icon: <Truck size={28} />,
-      title: t("Free Pickup"),
-      desc: t("Seamless doorstep pickup, scheduled your way"),
+      title: "Free Pickup",
+      desc: "Seamless doorstep pickup, scheduled your way",
     },
     {
       icon: <FileText size={28} />,
-      title: t("Prompt Payment"),
-      desc: t("Instant payment, right on the spot"),
+      title: "Prompt Payment",
+      desc: "Instant payment, right on the spot",
     },
     {
       icon: <Receipt size={28} />,
-      title: t("Certificate Issued"),
-      desc: t("Government-authorized scrapping certificate guaranteed"),
+      title: "Certificate Issued",
+      desc: "Government-authorized scrapping certificate guaranteed",
     },
   ];
 
   return (
     <section
-      id="services"
+      id="services"  // ✅ 🔥 THIS FIXES EVERYTHING
       className="pt-16 pb-20 px-6 bg-gradient-to-r from-[#e6eef2] to-[#dfe8e4]"
     >
 
       {/* TITLE */}
       <div className="max-w-7xl mx-auto mb-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-3">
-          {language === "hi" ? (
-            <>
-              <span className="text-green-600">यह</span>{" "}
-              <span className="text-blue-600">कैसे काम करता है</span>
-            </>
-          ) : (
-            <>
-              <span className="text-green-600">Here’s</span>{" "}
-              <span className="text-blue-600">How It Works</span>
-            </>
-          )}
+          <span className="text-green-600">Here’s</span>{" "}
+          <span className="text-blue-600">How It Works</span>
         </h2>
 
         <p className="text-gray-600 text-sm md:text-base">
-          {t("From price quote to scrapping certificate — a simple, transparent 4-step journey.")}
+          From price quote to scrapping certificate — a simple, transparent 4-step journey.
         </p>
       </div>
 
@@ -77,7 +65,7 @@ function HowItWorks() {
 
             {/* STEP */}
             <p className="text-gray-400 text-xs mb-1 tracking-wide">
-              {language === "hi" ? `चरण ${index + 1}` : `STEP ${index + 1}`}
+              STEP {index + 1}
             </p>
 
             <h3 className="font-semibold text-base mb-1">

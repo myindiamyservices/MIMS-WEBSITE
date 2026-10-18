@@ -11,9 +11,9 @@ const SITE_NAME = "My India My Services";
  */
 export const PAGE_SEO = {
   "/": {
-    title: `${SITE_NAME} (MIMS) | परिवर्तन योजना - Bus & Truck Scrap Delhi NCR`,
+    title: `${SITE_NAME} (MIMS) | Vehicle Scrap & Recycling Services in India`,
     description:
-      "My India My Services (MIMS) परिवर्तन योजना: Delhi NCR में पुरानी बसों और ट्रकों को स्क्रैप करवाकर नए वाहन पाएं। 50+ वाहन स्क्रैप, RVSF अधिकृत 100% वैध प्रक्रिया एवं COD लाभ।",
+      "My India My Services (MIMS) helps you sell old cars and two-wheelers for the best scrap value with RVSF-authorized legal vehicle recycling, free pickup, and instant documentation across India.",
     noIndex: false,
   },
   "/about": {
@@ -91,16 +91,16 @@ export const organizationJsonLd = {
   "@type": "Organization",
   name: SITE_NAME,
   legalName: SITE_NAME,
-  alternateName: ["MIMS", "My India My Services MIMS", "Parivartan Yojna MIMS"],
+  alternateName: ["MIMS", "My India My Services MIMS"],
   keywords:
-    "My India My Services, MIMS, परिवर्तन योजना, Parivartan Yojna, commercial vehicle scrap Delhi NCR, bus scrap India, truck scrap Delhi NCR, vehicle scrap India, car scrap India, bike scrap India, legal vehicle recycling, RVSF authorized recycler, certificate of deposit, COD scrappage benefits",
+    "My India My Services, MIMS, vehicle scrap India, car scrap India, bike scrap India, legal vehicle recycling",
   url: SITE_URL,
   logo: DEFAULT_OG_IMAGE,
   email: "myindiamyservices@gmail.com",
   telephone: "+91-93112-44755",
   foundingDate: "2021",
   description:
-    "My India My Services (MIMS) is India's trusted vehicle scrap sourcing and legal recycling platform with RVSF authorization. Under Parivartan Yojna, MIMS facilitates scrapping of old buses & trucks in Delhi NCR to enable adoption of new commercial vehicles.",
+    "My India My Services (MIMS) is India's trusted vehicle scrap sourcing and legal recycling platform with RVSF authorization and nationwide pickup.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Delhi",
@@ -124,38 +124,5 @@ export const websiteJsonLd = {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-  },
-};
-
-export const parivartanYojnaJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "GovernmentService",
-  serviceType: "Commercial Vehicle Scrappage and Fleet Modernization Scheme",
-  name: "परिवर्तन योजना (Parivartan Yojna) - Delhi NCR Commercial Vehicle Scrappage",
-  alternateName: [
-    "Parivartan Yojna",
-    "Parivartan Scheme Delhi NCR",
-    "MIMS Parivartan Yojna",
-    "Old Bus & Truck Scrap Scheme Delhi NCR",
-  ],
-  description:
-    "My India My Services की परिवर्तन योजना के तहत Delhi NCR में 50+ पुरानी बसों और ट्रकों को स्क्रैप करवाकर नए वाहन अपनाने में सहायता दी गई है। सुरक्षित परिवहन, स्वच्छ वातावरण एवं वैध RVSF प्रक्रिया।",
-  provider: {
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: SITE_URL,
-    telephone: "+91-93112-44755",
-    email: "myindiamyservices@gmail.com",
-  },
-  areaServed: {
-    "@type": "AdministrativeArea",
-    name: "Delhi NCR (Delhi, Gurugram, Noida, Ghaziabad, Faridabad)",
-  },
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "INR",
-    description:
-      "Free pickup, highest scrap value, legal Certificate of Deposit (COD), and assistance with new commercial bus/truck purchase.",
   },
 };

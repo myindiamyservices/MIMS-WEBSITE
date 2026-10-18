@@ -4,14 +4,7 @@ import parivartanBanner from "../assets/parivartan-yojna.png";
 
 function ParivartanBanner({ openModal }) {
   return (
-    <section
-      id="parivartan-yojna"
-      itemScope
-      itemType="https://schema.org/GovernmentService"
-      className="py-8 sm:py-10 px-4 sm:px-6 md:px-10 bg-white/80 border-y border-emerald-100"
-      aria-label="परिवर्तन योजना - कमर्शियल वाहन स्क्रैप योजना Delhi NCR"
-    >
-      <meta itemProp="serviceType" content="Vehicle Scrappage and Fleet Renewal" />
+    <section id="parivartan-yojna" className="py-8 sm:py-10 px-4 sm:px-6 md:px-10 bg-white/80 border-y border-emerald-100">
       <div className="max-w-6xl mx-auto">
         
         {/* BANNER IMAGE - FIXED: full aspect ratio with no cropping/clipping */}
@@ -24,13 +17,9 @@ function ParivartanBanner({ openModal }) {
         >
           <img
             src={parivartanBanner}
-            alt="परिवर्तन योजना - पुरानी बस और ट्रक स्क्रैप योजना Delhi NCR | My India My Services"
-            title="परिवर्तन योजना - सुरक्षित सफर, उज्जवल भविष्य | MIMS"
-            width={1672}
-            height={941}
+            alt="परिवर्तन योजना - सुरक्षित सफर, उज्जवल भविष्य | My India My Services"
             className="w-full h-auto block"
             loading="eager"
-            itemProp="image"
           />
         </Motion.div>
 
@@ -49,12 +38,9 @@ function ParivartanBanner({ openModal }) {
               विशेष पहल • Delhi NCR
             </span>
 
-            <h2 itemProp="name" className="mt-2.5 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 leading-snug">
+            <h2 className="mt-2.5 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 leading-snug">
               परिवर्तन योजना – आज ही स्क्रैप कराएं और कल को बेहतर बनाएं!
             </h2>
-            <span className="sr-only">
-              Parivartan Yojna - Commercial Vehicle Scrap Scheme in Delhi NCR for old buses, school buses, and trucks.
-            </span>
           </div>
 
           {/* 2-COLUMN BALANCED GRID (ALL CONTENT IN ONE COMPACT VIEW) */}

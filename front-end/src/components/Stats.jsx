@@ -1,8 +1,4 @@
-import { useLanguage } from "../context/LanguageContext";
-
 function Stats() {
-  const { t } = useLanguage();
-
   return (
     <section className="py-6 md:py-8 bg-[#020617] text-center">
 
@@ -13,7 +9,7 @@ function Stats() {
             1200+
           </h3>
           <p className="text-gray-400 mt-1 text-xs md:text-sm">
-            {t("Tons Recycled")}
+            Tons Recycled
           </p>
         </div>
 
@@ -22,7 +18,7 @@ function Stats() {
             5500+
           </h3>
           <p className="text-gray-400 mt-1 text-xs md:text-sm">
-            {t("Clients")}
+            Clients
           </p>
         </div>
 
@@ -31,7 +27,7 @@ function Stats() {
             120+
           </h3>
           <p className="text-gray-400 mt-1 text-xs md:text-sm">
-            {t("Cities")}
+            Cities
           </p>
         </div>
 

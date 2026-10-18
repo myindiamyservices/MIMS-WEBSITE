@@ -1,6 +1,5 @@
 import map from "../assets/map.png";
 import { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
 
 const cities = [
   "Delhi","Noida","Greater Noida","Gurgaon","Faridabad","Ghaziabad",
@@ -23,7 +22,6 @@ const cities = [
 function Availability({ openModal }) {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const { language, t } = useLanguage();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -65,15 +63,11 @@ function Availability({ openModal }) {
           <div className="mb-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-3">
               <span className="text-green-600">My India My Services</span>{" "}
-              <span className="text-blue-600">{t("Presence")}</span>
+              <span className="text-blue-600">Presence</span>
             </h1>
 
             <p className="text-gray-700 text-lg">
-              {language === "hi" ? (
-                <>हमारे संचालन भारत भर के <b>120+ शहरों</b> में उपलब्ध हैं</>
-              ) : (
-                <>Our operations are open at <b>120+ cities</b> across India</>
-              )}
+              Our operations are open at <b>120+ cities</b> across India
             </p>
           </div>
 
@@ -81,18 +75,18 @@ function Availability({ openModal }) {
           <div className="bg-white p-8 md:p-10 rounded-2xl shadow-2xl max-w-xl relative z-10">
 
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
-              {t("Check Service Availability")}
+              Check Service Availability
             </h2>
 
             <p className="text-gray-500 mb-5">
-              {t("Enter your city to see if we operate in your area.")}
+              Enter your city to see if we operate in your area.
             </p>
 
             {/* INPUT */}
             <input
               value={city}
               onChange={handleChange}
-              placeholder={t("Enter your city")}
+              placeholder="Enter your city"
               className="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-green-500"
             />
 
@@ -123,7 +117,7 @@ function Availability({ openModal }) {
               hover:brightness-110
               mt-4"
             >
-              {t("Check availability in your city")}
+              Check availability in your city
             </button>
 
           </div>

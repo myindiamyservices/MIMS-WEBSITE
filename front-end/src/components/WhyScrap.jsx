@@ -8,18 +8,16 @@ import {
   Bus,
   Zap
 } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
 
 function WhyScrap({ openModal }) {
-  const { language, t } = useLanguage();
 
   const vehicles = [
-    { label: t("Cars"), value: "CAR", icon: <Car size={30} /> },
-    { label: t("Two-Wheeler"), value: "2 Wheeler", icon: <Bike size={30} /> },
-    { label: t("Three-Wheeler"), value: "3 Wheeler", icon: <Truck size={30} /> },
-    { label: t("Bus"), value: "BUS", icon: <Bus size={30} /> },
-    { label: t("Truck"), value: "Truck", icon: <Truck size={30} /> },
-    { label: t("Electric"), value: "Vehicle Category", icon: <Zap size={30} /> },
+    { label: "Cars", value: "CAR", icon: <Car size={30} /> },
+    { label: "Two-Wheeler", value: "2 Wheeler", icon: <Bike size={30} /> },
+    { label: "Three-Wheeler", value: "3 Wheeler", icon: <Truck size={30} /> },
+    { label: "Bus", value: "BUS", icon: <Bus size={30} /> },
+    { label: "Truck", value: "Truck", icon: <Truck size={30} /> },
+    { label: "Electric", value: "Vehicle Category", icon: <Zap size={30} /> },
   ];
 
   return (
@@ -27,38 +25,30 @@ function WhyScrap({ openModal }) {
 
       {/* TITLE */}
       <h2 className="text-4xl font-bold text-center mb-10">
-        {language === "hi" ? (
-          <>
-            माई इंडिया माई सर्विसेज <span className="text-green-600">ही क्यों?</span>
-          </>
-        ) : (
-          <>
-            Why <span className="text-green-600">My India My Services?</span>
-          </>
-        )}
+        Why <span className="text-green-600">My India My Services?</span>
       </h2>
 
       {/* FEATURES */}
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-5 mb-14">
 
         <div className="bg-white p-5 rounded-xl flex items-center gap-3 shadow-sm hover:shadow-md transition duration-200">
-          <CheckCircle className="text-green-600 shrink-0" size={24} />
-          <p className="font-medium">{t("Instant Offer")}</p>
+          <CheckCircle className="text-green-600" size={24} />
+          <p className="font-medium">Instant Offer</p>
         </div>
 
         <div className="bg-white p-5 rounded-xl flex items-center gap-3 shadow-sm hover:shadow-md transition duration-200">
-          <Truck className="text-green-600 shrink-0" size={24} />
-          <p className="font-medium">{t("Prompt Pickup")}</p>
+          <Truck className="text-green-600" size={24} />
+          <p className="font-medium">Prompt Pickup</p>
         </div>
 
         <div className="bg-white p-5 rounded-xl flex items-center gap-3 shadow-sm hover:shadow-md transition duration-200">
-          <FileText className="text-green-600 shrink-0" size={24} />
-          <p className="font-medium">{t("Hassle-free Process")}</p>
+          <FileText className="text-green-600" size={24} />
+          <p className="font-medium">Hassle-free Process</p>
         </div>
 
         <div className="bg-white p-5 rounded-xl flex items-center gap-3 shadow-sm hover:shadow-md transition duration-200">
-          <Shield className="text-green-600 shrink-0" size={24} />
-          <p className="font-medium">{t("100% Legal Compliance")}</p>
+          <Shield className="text-green-600" size={24} />
+          <p className="font-medium">100% Legal Compliance</p>
         </div>
 
       </div>
@@ -66,10 +56,10 @@ function WhyScrap({ openModal }) {
       {/* WHAT WE SCRAP */}
       <div className="max-w-7xl mx-auto text-center mb-10">
         <h3 className="text-4xl font-bold text-green-600">
-          {t("What We Scrap")}
+          What We Scrap
         </h3>
         <p className="text-gray-600 mt-2">
-          {t("Select your vehicle type to get started.")}
+          Select your vehicle type to get started.
         </p>
       </div>
 
@@ -99,7 +89,7 @@ function WhyScrap({ openModal }) {
 
             {/* LINK */}
             <p className="text-green-600 text-sm group-hover:underline">
-              {t("Get Estimate")}
+              Get Estimate
             </p>
           </div>
         ))}

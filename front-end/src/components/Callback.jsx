@@ -1,10 +1,8 @@
 import { Phone, MapPin, Car, Mail } from "lucide-react";
 import { useState } from "react";
 import API from "../api";
-import { useLanguage } from "../context/LanguageContext";
 
 function Callback() {
-  const { language, t } = useLanguage();
 
   const [form, setForm] = useState({
     name: "",
@@ -21,16 +19,16 @@ function Callback() {
 
     let newErrors = {};
 
-    if (!form.name.trim()) newErrors.name = language === "hi" ? "नाम आवश्यक है" : "Name is required";
+    if (!form.name.trim()) newErrors.name = "Name is required";
 
-    if (!form.phone.trim()) newErrors.phone = language === "hi" ? "फ़ोन नंबर आवश्यक है" : "Phone is required";
+    if (!form.phone.trim()) newErrors.phone = "Phone is required";
     else if (!/^[0-9]{10}$/.test(form.phone))
-      newErrors.phone = language === "hi" ? "कृपया मान्य 10 अंकों का नंबर दर्ज करें" : "Enter valid 10 digit number";
+      newErrors.phone = "Enter valid 10 digit number";
 
-    if (!form.location.trim()) newErrors.location = language === "hi" ? "स्थान आवश्यक है" : "Location is required";
+    if (!form.location.trim()) newErrors.location = "Location is required";
 
     if (!form.description.trim())
-      newErrors.description = language === "hi" ? "विवरण आवश्यक है" : "Description is required";
+      newErrors.description = "Description is required";
 
     setErrors(newErrors);
 
@@ -47,8 +45,9 @@ function Callback() {
       });
 
       setErrors({});
-      setSuccess(t("Callback requested successfully ✅"));
+      setSuccess("Callback requested successfully ✅");
 
+      // auto hide after 3 sec
       setTimeout(() => setSuccess(""), 3000);
 
     } catch (err) {
@@ -66,11 +65,11 @@ function Callback() {
 
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-3">
-              {t("Get in Touch")}
+              Get in Touch
             </h2>
 
             <p className="mb-6 text-white/90 text-sm md:text-base">
-              {t("Planning to scrap your vehicle? Request a callback and our team will take care of everything — from instant valuation to final certification.")}
+              Planning to scrap your vehicle? Request a callback and our team will take care of everything — from instant valuation to final certification.
             </p>
 
             <div className="space-y-4">
@@ -80,9 +79,9 @@ function Callback() {
                   <Phone size={18} />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">{t("Quick Response")}</p>
+                  <p className="font-semibold text-sm">Quick Response</p>
                   <p className="text-xs text-white/80">
-                    {t("We respond within 24 hours")}
+                    We respond within 24 hours
                   </p>
                 </div>
               </div>
@@ -92,7 +91,7 @@ function Callback() {
                   <Mail size={18} />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">{t("Email Support")}</p>
+                  <p className="font-semibold text-sm">Email Support</p>
                   <p className="text-xs text-white/80">
                     myindiamyservices@gmail.com
                   </p>
@@ -104,9 +103,9 @@ function Callback() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">{t("Pan-India Service")}</p>
+                  <p className="font-semibold text-sm">Pan-India Service</p>
                   <p className="text-xs text-white/80">
-                    {t("Serving 120+ cities")}
+                    Serving 120+ cities
                   </p>
                 </div>
               </div>
@@ -116,9 +115,9 @@ function Callback() {
                   <Car size={18} />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">{t("All Vehicle Types")}</p>
+                  <p className="font-semibold text-sm">All Vehicle Types</p>
                   <p className="text-xs text-white/80">
-                    {t("Cars, bikes, commercial vehicles")}
+                    Cars, bikes, commercial vehicles
                   </p>
                 </div>
               </div>
@@ -127,9 +126,7 @@ function Callback() {
           </div>
 
           <div className="mt-6 bg-white/20 px-4 py-3 rounded-lg text-xs text-white/90">
-            {language === "hi"
-              ? "आपका डेटा पूरी तरह सुरक्षित है। हम आपकी गोपनीयता का सम्मान करते हैं।"
-              : "Your data is secure. We respect your privacy and never share your information."}
+            Your data is secure. We respect your privacy and never share your information.
           </div>
 
         </div>
@@ -138,20 +135,11 @@ function Callback() {
         <div className="bg-white px-6 py-8 md:p-10">
 
           <h2 className="text-xl md:text-2xl font-bold mb-5">
-            {language === "hi" ? (
-              <>
-                <span className="text-green-600">कॉलबैक</span>{" "}
-                <span className="text-blue-600">का अनुरोध करें</span>
-              </>
-            ) : (
-              <>
-                <span className="text-green-600">Request</span>{" "}
-                <span className="text-blue-600">a Callback</span>
-              </>
-            )}
+            <span className="text-green-600">Request</span>{" "}
+            <span className="text-blue-600">a Callback</span>
           </h2>
 
-          {/* SUCCESS MESSAGE */}
+          {/* ✅ SUCCESS MESSAGE */}
           {success && (
             <div className="bg-green-100 border border-green-300 text-green-700 text-sm px-4 py-2 rounded-md mb-3 shadow-sm">
               {success}
@@ -163,7 +151,7 @@ function Callback() {
             {/* NAME */}
             <div>
               <label className="block mb-1 text-sm font-medium">
-                {language === "hi" ? "आपका नाम*" : "Your Name*"}
+                Your Name*
               </label>
               <input
                 value={form.name}
@@ -174,7 +162,7 @@ function Callback() {
                 className={`w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-green-500 ${
                   errors.name ? "border-red-500" : ""
                 }`}
-                placeholder={language === "hi" ? "पूरा नाम दर्ज करें" : "Full Name"}
+                placeholder="Full Name"
               />
               {errors.name && (
                 <p className="text-red-500 text-xs mt-1">{errors.name}</p>
@@ -184,7 +172,7 @@ function Callback() {
             {/* PHONE */}
             <div>
               <label className="block mb-1 text-sm font-medium">
-                {language === "hi" ? "फ़ोन नंबर*" : "Phone Number*"}
+                Phone Number*
               </label>
               <input
                 value={form.phone}
@@ -195,7 +183,7 @@ function Callback() {
                 className={`w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-green-500 ${
                   errors.phone ? "border-red-500" : ""
                 }`}
-                placeholder={language === "hi" ? "10 अंकों का मोबाइल नंबर" : "Phone Number"}
+                placeholder="Phone Number"
               />
               {errors.phone && (
                 <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
@@ -205,7 +193,7 @@ function Callback() {
             {/* LOCATION */}
             <div>
               <label className="block mb-1 text-sm font-medium">
-                {language === "hi" ? "वाहन का स्थान / शहर*" : "Vehicle Location*"}
+                Vehicle Location*
               </label>
               <input
                 value={form.location}
@@ -216,7 +204,7 @@ function Callback() {
                 className={`w-full px-3 py-2 border rounded-lg text-sm outline-none focus:ring-2 focus:ring-green-500 ${
                   errors.location ? "border-red-500" : ""
                 }`}
-                placeholder={language === "hi" ? "शहर या क्षेत्र दर्ज करें" : "Type Vehicle Location"}
+                placeholder="Type Vehicle Location"
               />
               {errors.location && (
                 <p className="text-red-500 text-xs mt-1">
@@ -228,7 +216,7 @@ function Callback() {
             {/* DESCRIPTION */}
             <div>
               <label className="block mb-1 text-sm font-medium">
-                {language === "hi" ? "वाहन का विवरण*" : "Vehicle Description*"}
+                Vehicle Description*
               </label>
               <textarea
                 value={form.description}
@@ -240,7 +228,7 @@ function Callback() {
                   errors.description ? "border-red-500" : ""
                 }`}
                 rows="3"
-                placeholder={language === "hi" ? "कंपनी, मॉडल, वर्ष, स्थिति आदि..." : "Vehicle Description"}
+                placeholder="Vehicle Description"
               />
               {errors.description && (
                 <p className="text-red-500 text-xs mt-1">
@@ -260,7 +248,7 @@ function Callback() {
               hover:shadow-xl hover:shadow-green-500/40
               hover:brightness-110"
             >
-              {t("Request Callback")}
+              Request a Callback
             </button>
 
           </form>

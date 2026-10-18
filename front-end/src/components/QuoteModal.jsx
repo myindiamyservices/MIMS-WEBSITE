@@ -1,10 +1,8 @@
 import API from "../api";
 import { useState, useEffect } from "react";
 import carData from "../data/cars.json";
-import { useLanguage } from "../context/LanguageContext";
 
 function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) {
-  const { language, t } = useLanguage();
 
   const [step, setStep] = useState("form");
 
@@ -107,12 +105,12 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
   const validate = () => {
     let err = {};
 
-    if (!form.name) err.name = language === "hi" ? "नाम आवश्यक है!" : "Name is required!";
-    if (!form.category) err.category = language === "hi" ? "वाहन श्रेणी आवश्यक है!" : "Vehicle Category is required !";
-    if (!form.model) err.model = language === "hi" ? "मॉडल आवश्यक है!" : "Make & Model is required !";
-    if (!form.location) err.location = language === "hi" ? "स्थान आवश्यक है!" : "Vehicle location is required !";
+    if (!form.name) err.name = "Name is required!";
+    if (!form.category) err.category = "Vehicle Category is required !";
+    if (!form.model) err.model = "Make & Model is required !";
+    if (!form.location) err.location = "Vehicle location is required !";
     if (!form.phone || form.phone.length !== 10)
-      err.phone = language === "hi" ? "10 अंकों का संपर्क नंबर आवश्यक है!" : "Contact number is required !";
+      err.phone = "Contact number is required !";
 
     setErrors(err);
     return Object.keys(err).length === 0;
@@ -184,12 +182,11 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
       setStep("result");
 
     } catch (err) {
-      const result = getEstimate();
-      setEstimate(result);
-      setStep("result");
+      alert("Error saving data ❌");
     }
   };
 
+  // 🔥 REBATE (FINAL 45K–95K RANGE)
   let rebateMin = 0;
   let rebateMax = 0;
 
@@ -213,20 +210,18 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
   return (
     <div className="fixed inset-0 bg-black/40 z-[100] flex items-center justify-center px-4">
 
-      <div className="bg-gradient-to-r from-[#eaf4fb] to-[#edf7ea] w-full max-w-4xl p-6 md:p-10 rounded-3xl relative max-h-[90vh] overflow-y-auto">
+      <div className="bg-gradient-to-r from-[#eaf4fb] to-[#edf7ea] w-full max-w-4xl p-6 md:p-10 rounded-3xl relative">
 
-        <button onClick={onClose} className="absolute right-5 top-5 text-gray-600 hover:text-black text-xl font-bold">✕</button>
+        <button onClick={onClose} className="absolute right-5 top-5">✕</button>
 
         {step === "form" && (
           <>
             <h2 className="text-3xl md:text-5xl font-bold text-green-600 mb-2">
-              {language === "hi" ? "वाहन का तुरंत अनुमान प्राप्त करें" : "Get an Instant Vehicle Estimate"}
+              Get an Instant Vehicle Estimate
             </h2>
 
             <p className="text-gray-600 mb-6">
-              {language === "hi"
-                ? "हम टोइंग और डिसमेंटलिंग से लेकर रीसाइक्लिंग सर्टिफिकेट तक सब कुछ संभालते हैं।"
-                : "We handle everything from towing and dismantling to recycling certification."}
+              We handle everything from towing and dismantling to recycling certification.
             </p>
 
             <div className="grid md:grid-cols-2 gap-5">
@@ -235,19 +230,19 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
                 <select
                   value={form.category}
                   onChange={(e)=>setForm({...form, category:e.target.value})}
-                  className="h-12 border rounded-lg px-3 w-full bg-white"
+                  className="h-12 border rounded-lg px-3 w-full"
                 >
-                  <option value="">{language === "hi" ? "श्रेणी चुनें" : "Select Category"}</option>
-                  <option value="CAR">{language === "hi" ? "कार (CAR)" : "CAR"}</option>
-                  <option value="Truck">{language === "hi" ? "ट्रक (Truck)" : "Truck"}</option>
-                  <option value="BUS">{language === "hi" ? "बस (BUS)" : "BUS"}</option>
-                  <option value="Mobile cranes">{language === "hi" ? "मोबाइल क्रेन (Mobile cranes)" : "Mobile cranes"}</option>
-                  <option value="Trailer">{language === "hi" ? "ट्रेलर (Trailer)" : "Trailer"}</option>
-                  <option value="Earthmover">{language === "hi" ? "अर्थमूवर (Earthmover)" : "Earthmover"}</option>
-                  <option value="Tractors">{language === "hi" ? "ट्रैक्टर (Tractors)" : "Tractors"}</option>
-                  <option value="2 Wheeler">{language === "hi" ? "दो-पहिया (2 Wheeler)" : "2 Wheeler"}</option>
-                  <option value="3 Wheeler">{language === "hi" ? "तीन-पहिया (3 Wheeler)" : "3 Wheeler"}</option>
-                  <option value="Others">{language === "hi" ? "अन्य (Others)" : "Others"}</option>
+                  <option value="">Select Category</option>
+                  <option>CAR</option>
+                  <option>Truck</option>
+                  <option>BUS</option>
+                  <option>Mobile cranes</option>
+                  <option>Trailer</option>
+                  <option>Earthmover</option>
+                  <option>Tractors</option>
+                  <option>2 Wheeler</option>
+                  <option>3 Wheeler</option>
+                  <option>Others</option>
                 </select>
                 {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
               </div>
@@ -257,12 +252,12 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
                   value={form.model}
                   onChange={(e)=>handleCarSearch(e.target.value)}
                   onClick={(e)=>e.stopPropagation()}
-                  placeholder={language === "hi" ? "वाहन खोजें (उदा. Swift, City)..." : "Search vehicle..."}
-                  className="h-12 w-full border rounded-lg px-3 bg-white"
+                  placeholder="Search vehicle..."
+                  className="h-12 w-full border rounded-lg px-3"
                 />
 
                 {showCarDropdown && filteredCars.length > 0 && (
-                  <div className="absolute w-full bg-white border mt-1 rounded-lg max-h-60 overflow-y-auto z-50 shadow-lg">
+                  <div className="absolute w-full bg-white border mt-1 rounded-lg max-h-60 overflow-y-auto z-50">
                     {filteredCars.map((car, i) => {
                       const name = `${car.Make || ""} ${car.Model || ""}`.trim();
                       if (!name) return null;
@@ -291,12 +286,12 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
                   value={form.location}
                   onChange={(e)=>handleCitySearch(e.target.value)}
                   onClick={(e)=>e.stopPropagation()}
-                  placeholder={language === "hi" ? "वाहन का स्थान या शहर लिखें" : "Type Your Vehicle Location"}
-                  className="h-12 w-full border rounded-lg px-3 bg-white"
+                  placeholder="Type Your Vehicle Location"
+                  className="h-12 w-full border rounded-lg px-3"
                 />
 
                 {showCityDropdown && filteredCities.length > 0 && (
-                  <div className="absolute w-full bg-white border mt-1 rounded-lg max-h-60 overflow-y-auto z-50 shadow-lg">
+                  <div className="absolute w-full bg-white border mt-1 rounded-lg max-h-60 overflow-y-auto z-50">
                     {filteredCities.map((city, i) => (
                       <div
                         key={i}
@@ -318,22 +313,21 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
               <div>
                 <input
                   type="text"
-                  placeholder={language === "hi" ? "पूरा नाम" : "Full Name"}
+                  placeholder="Full Name"
                   value={form.name}
                   onChange={(e)=>setForm({...form, name:e.target.value})}
-                  className="h-12 w-full border rounded-lg px-3 bg-white"
+                  className="h-12 w-full border rounded-lg px-3"
                 />
                 {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
               </div>
 
               <div>
-                <div className="flex border rounded-lg overflow-hidden h-12 bg-white">
-                  <span className="px-3 flex items-center bg-gray-100 text-gray-700 font-medium">+91</span>
+                <div className="flex border rounded-lg overflow-hidden h-12">
+                  <span className="px-3 flex items-center bg-gray-100">+91</span>
                   <input
-                    placeholder={language === "hi" ? "10 अंकों का मोबाइल नंबर" : "10-digit mobile number"}
                     value={form.phone}
                     onChange={(e)=>setForm({...form, phone:e.target.value.replace(/\D/g,"")})}
-                    className="w-full px-3 outline-none"
+                    className="w-full px-3"
                   />
                 </div>
                 {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
@@ -350,7 +344,7 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
               active:scale-95
               hover:shadow-xl hover:shadow-green-500/40
               hover:brightness-110">
-              {t("Submit")}
+              Submit
             </button>
           </>
         )}
@@ -358,47 +352,47 @@ function QuoteModal({ isOpen, onClose, defaultCategory, defaultLocation = "" }) 
         {step === "result" && estimate && (
           <>
             <h2 className="text-3xl font-bold text-green-600 mb-2">
-              {language === "hi" ? "आपके वाहन का अनुमानित स्क्रैप मूल्य" : "Your Vehicle’s Estimated Scrap Value"}
+              Your Vehicle’s Estimated Scrap Value
             </h2>
 
-            <div className="bg-blue-600 text-white p-6 rounded-2xl mb-6 shadow-md">
-              <p>{t("Estimated Scrap Value")}</p>
+            <div className="bg-blue-600 text-white p-6 rounded-2xl mb-6">
+              <p>Estimated Scrap Value</p>
               <h3 className="text-2xl font-bold">
-                {language === "hi"
-                  ? `₹${estimate.min.toLocaleString()} - ₹${estimate.max.toLocaleString()} के बीच`
-                  : `Between ₹${estimate.min.toLocaleString()} - ₹${estimate.max.toLocaleString()}`}
+                Between ₹{estimate.min.toLocaleString()} - ₹{estimate.max.toLocaleString()}
               </h3>
             </div>
 
-            <div className="flex justify-between items-start mb-6 px-10">
-              <div>
-                <p className="text-sm text-gray-500 mb-1">{language === "hi" ? "वाहन" : "Vehicle"}</p>
-                <p className="font-semibold text-gray-800">
-                  {form.model || form.category}
-                </p>
-              </div>
+           <div className="flex justify-between items-start mb-6 px-10">
 
-              <div className="text-right">
-                <p className="text-sm text-gray-500 mb-1">{language === "hi" ? "स्थान" : "Location"}</p>
-                <p className="font-semibold text-gray-800">
-                  {form.location}
-                </p>
-              </div>
+            {/* LEFT */}
+            <div>
+              <p className="text-sm text-gray-500 mb-1">Vehicle</p>
+              <p className="font-semibold text-gray-800">
+                {form.model || form.category}
+              </p>
             </div>
 
-            <div className="bg-green-600 text-white p-6 rounded-2xl shadow-md mb-6">
-              <p>{language === "hi" ? "रोड टैक्स छूट (COD लाभ)" : "Road Tax Rebate"}</p>
+            {/* RIGHT */}
+            <div className="text-right">
+              <p className="text-sm text-gray-500 mb-1">Location</p>
+              <p className="font-semibold text-gray-800">
+                {form.location}
+              </p>
+            </div>
+
+          </div>
+
+            <div className="bg-green-600 text-white p-6 rounded-2xl">
+              <p>Road Tax Rebate</p>
               <h3 className="text-2xl font-bold">
-                {language === "hi"
-                  ? `लगभग ₹${rebateMin.toLocaleString()} – ₹${rebateMax.toLocaleString()}`
-                  : `Approx. ₹${rebateMin.toLocaleString()} – ₹${rebateMax.toLocaleString()}`}
+                Approx. ₹{rebateMin.toLocaleString()} – ₹{rebateMax.toLocaleString()}
               </h3>
             </div>
-
             <p className="text-sm text-gray-500 text-center leading-relaxed">
-              {language === "hi"
-                ? "हम आपकी गोपनीयता का सम्मान करते हैं। आपका डेटा सुरक्षित है और आपकी अनुमति के बिना कभी साझा नहीं किया जाता।"
-                : "We value your privacy. By submitting this form, you allow us to use your contact details to process your vehicle scrapping request. Your data is secure and never shared without your permission."}
+              We value your privacy. By submitting this form, you allow us to use your contact details 
+              to process your vehicle scrapping request. Your data is सुरक्षित and never shared without your permission. 
+              Read our 
+              <span className="text-blue-600 font-semibold hover:underline cursor-pointer">Privacy Policy</span>.
             </p>
           </>
         )}
