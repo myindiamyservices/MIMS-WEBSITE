@@ -8,6 +8,7 @@ import PosterPopup from "./components/PosterPopup";
 
 // HOME COMPONENTS
 import Hero from "./components/Hero";
+import ParivartanBanner from "./components/ParivartanBanner";
 import Stats from "./components/Stats";
 import WhyScrap from "./components/WhyScrap";
 import Availability from "./components/Availability";
@@ -75,6 +76,7 @@ function App() {
             element={
               <>
                 <Hero openModal={openModal} />
+                <ParivartanBanner openModal={openModal} />
                 <Stats />
                 <Availability openModal={openModal} />
                 <WhyScrap openModal={openModal} />
