@@ -4,7 +4,14 @@ import parivartanBanner from "../assets/parivartan-yojna.png";
 
 function ParivartanBanner({ openModal }) {
   return (
-    <section id="parivartan-yojna" className="py-8 sm:py-10 px-4 sm:px-6 md:px-10 bg-white/80 border-y border-emerald-100">
+    <section
+      id="parivartan-yojna"
+      itemScope
+      itemType="https://schema.org/GovernmentService"
+      className="py-8 sm:py-10 px-4 sm:px-6 md:px-10 bg-white/80 border-y border-emerald-100"
+      aria-label="परिवर्तन योजना - कमर्शियल वाहन स्क्रैप योजना Delhi NCR"
+    >
+      <meta itemProp="serviceType" content="Vehicle Scrappage and Fleet Renewal" />
       <div className="max-w-6xl mx-auto">
         
         {/* BANNER IMAGE - FIXED: full aspect ratio with no cropping/clipping */}
